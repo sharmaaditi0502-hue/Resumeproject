@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartResume - Analysis Report</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Roboto',sans-serif; background:#fdf6f0; color:#5a4a3c; }
+
+nav {
+  background:#6f4e37;
+  padding:1rem 2rem;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+nav .logo { font-size:1.7rem; font-weight:700; display:flex; gap:10px; }
+
+nav .ats-btn {
+  background:#fff;
+  color:#6f4e37;
+  padding:8px 14px;
+  border-radius:6px;
+  font-weight:600;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.container { max-width:1200px; margin:auto; padding:1.5rem; }
+
+.analysis-header h1 { font-size:2.3rem; color:#6f4e37; display:flex; gap:10px; }
+
+.circular-container {
+  margin-top:2rem;
+  display:flex;
+  justify-content:center;
+  gap:3rem;
+  flex-wrap:wrap;
+}
+
+.circular {
+  width:180px; height:180px; background:white; border-radius:50%;
+  display:flex; justify-content:center; align-items:center;
+  position:relative; box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+.circular canvas { position:absolute; top:0; left:0; }
+.circular span { font-size:1.8rem; font-weight:700; color:#6f4e37; }
+.circular small { position:absolute; bottom:-28px; font-weight:600; color:#6f4e37; }
+
+.cards-container {
+  margin-top:2rem;
+  display:grid; gap:1.7rem;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+}
+
+.card {
+  background:white; padding:1.5rem; border-radius:12px;
+  text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.1);
+}
+.card img { width:85px; height:85px; border-radius:50%; object-fit:cover; }
+.card h3 { margin:10px 0; color:#6f4e37; }
+.card ul { text-align:left; padding-left:18px; }
+
+.ats-button-section {
+  text-align:center;
+  margin-top:30px;
+}
+
+.ats-button-section a {
+  background:#6f4e37;
+  color:white;
+  padding:12px 25px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:16px;
+}
+
+footer { margin-top:2rem; background:#6f4e37; color:#fff; padding:1rem; text-align:center; }
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo"><i class="fas fa-file-alt"></i> SmartResume</div>
+  <a href="/ats-score" class="ats-btn"><i class="fas fa-robot"></i> View ATS Score</a>
+</nav>
+
+<div class="container analysis-header">
+  <h1><i class="fas fa-chart-line"></i> Resume Analysis Report</h1>
+  <p>Your resume has been evaluated. Here is your detailed report.</p>
+</div>
+
+<section class="container">
+  <div class="circular-container">
+
+    <div class="circular" id="resumeScore">
+      <canvas width="180" height="180"></canvas>
+      <span>{{ score }}%</span>
+      <small>Resume Score</small>
+    </div>
+
+    <div class="circular" id="keywordScore">
+      <canvas width="180" height="180"></canvas>
+      <span>{{ keyword_score }}%</span>
+      <small>Keyword Match</small>
+    </div>
+
+  </div>
+</section>
+
+<!-- ATS Button Section -->
+<div class="ats-button-section">
+  <a href="/ats-score"><i class="fas fa-robot"></i> View ATS Score</a>
+</div>
+
+<section class="feedback-section container">
+  <h2 style="color:#6f4e37;">Resume Feedback</h2>
+
+  <div class="cards-container">
+
+    <div class="card">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.rSfBJjGWhDSOP18ekgXJfAHaHa">
+      <h3>Issues Found</h3>
+      <ul>
+        {% for issue in issues %}
+          <li>{{ issue }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.mV-bs6U1QgVA6drHcJp3UwHaJ4">
+      <h3>Weak Words</h3>
+      <ul>
+        {% for w in wrong_words %}
+          <li>{{ w }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="card">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.zh7SUYknQFqWpFg1SY21_gHaHa">
+      <h3>Strong Points</h3>
+      <ul>
+        {% for h in highlights %}
+          <li>{{ h }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="card">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.g5NVzmtI0M88v5yFjnc_jQHaHa">
+      <h3>Sequence Feedback</h3>
+      <ul>
+        <li>{{ sequence_feedback }}</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.pVK5cIBiH2SYhxJzZy1XbAHaHa">
+      <h3>Suggestions</h3>
+      <ul>
+        {% for s in suggestions %}
+          <li>{{ s }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="card">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.x-8bNqxXwD7mZ3k8QHaHa">
+      <h3>Missing Keywords</h3>
+      <ul>
+        {% for mk in missing_keywords %}
+          <li>{{ mk }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2025 SmartResume. All rights reserved.
+</footer>
+
+<script>
+const resumeScore = Number("{{ score }}");
+const keywordScore = Number("{{ keyword_score }}");
+
+function animateCircular(id, score){
+  const container = document.getElementById(id);
+  const canvas = container.querySelector("canvas");
+  const ctx = canvas.getContext("2d");
+  const span = container.querySelector("span");
+  let current = 0;
+
+  function draw(val){
+    ctx.clearRect(0,0,180,180);
+    ctx.strokeStyle = "#6f4e37";
+    ctx.lineWidth = 12;
+    ctx.beginPath();
+    ctx.arc(90,90,75,-Math.PI/2,(2 * Math.PI)*(val/100)-Math.PI/2);
+    ctx.stroke();
+  }
+
+  let interval = setInterval(()=>{
+    if(current > score){
+      clearInterval(interval);
+      return;
+    }
+    draw(current);
+    span.innerText = current + "%";
+    current++;
+  },15);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    animateCircular("resumeScore", resumeScore);
+    animateCircular("keywordScore", keywordScore);
+});
+</script>
+
+</body>
+</html>

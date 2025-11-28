@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background-color: #f7f3ee;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+nav {
+  background-color: #5a3e36;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  color: #f5efe8;
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.nav-links a {
+  color: #f5efe8;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+.analysis-header {
+  text-align: center;
+  padding: 3rem 0 2rem;
+}
+
+.analysis-header h1 {
+  margin: 0;
+  color: #5a3e36;
+  font-size: 2.4rem;
+}
+
+.analysis-header p {
+  margin-top: 0.5rem;
+  color: #7f6b5a;
+  font-size: 1.1rem;
+}
+
+.score-section {
+  margin-bottom: 2rem;
+}
+
+.score-card {
+  background-color: #d9c4b3;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.score-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #5a3e36;
+}
+
+.score-description {
+  margin-top: 1rem;
+  color: #3e3e3e;
+}
+
+.feedback-section .feedback-block {
+  margin-bottom: 2rem;
+}
+
+.feedback-block h3 {
+  color: #5a3e36;
+  margin-bottom: 0.5rem;
+}
+
+.feedback-block ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.feedback-block p {
+  font-size: 1rem;
+  color: #3e3e3e;
+}
+
+.template-review {
+  margin-bottom: 2rem;
+}
+
+.template-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.template-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  flex: 1 1 calc(50% - 1.5rem);
+  padding: 1rem;
+  text-align: center;
+}
+
+.template-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+.template-card h3 {
+  margin: 1rem 0 0.5rem;
+  color: #5a3e36;
+}
+
+.template-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.suggestions-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.suggestions-section li {
+  background-color: #f0e8e0;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  color: #3e3e3e;
+}
+
+footer {
+  background-color: #5a3e36;
+  color: #f5efe8;
+  padding: 1.5rem 0;
+  text-align: center;
+}

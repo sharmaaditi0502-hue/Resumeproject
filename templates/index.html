@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Smart Resume Builder</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <div class="container nav-container">
+    <h2 class="logo">SmartResume</h2>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#features">Features</a>
+      <a href="#uploadSection">Upload Resume</a>
+      <a href="#contact">Contact</a>
+      <a href="#" class="btn-login" onclick="openModal()">Login / Sign Up</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://images.pexels.com/photos/3183171/pexels-photo-3183171.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Hero Background">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="container hero-content">
+    <h1 class="fade-in">Build a Resume That Gets You Hired</h1>
+    <p class="fade-in delay-1">“A professional resume opens doors. Make your first impression unforgettable.”</p>
+    <div class="hero-buttons fade-in delay-2">
+      <a href="#uploadSection" class="btn-primary">Create New Resume</a>
+      <a href="#uploadSection" class="btn-secondary">Improve Old Resume</a>
+    </div>
+  </div>
+</section>
+
+<section class="info-section container" id="features">
+  <h2>Why Choose SmartResume?</h2>
+  <div class="info-cards">
+    <div class="card">
+      <img src="https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Easy Templates">
+      <h3>Easy Templates</h3>
+      <p>Choose from professional templates and make your resume stand out in minutes.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Smart Suggestions">
+      <h3>Smart Suggestions</h3>
+      <p>Get AI-driven suggestions to enhance your skills, experience, and phrasing.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Quick Upload">
+      <h3>Quick Upload</h3>
+      <p>Upload your existing resume and get instant improvements and feedback.</p>
+    </div>
+  </div>
+</section>
+
+<section class="template-carousel container">
+  <h2>Resume Templates</h2>
+  <div class="carousel">
+    <img src="https://th.bing.com/th/id/OIP.-vE5tWtI4r73CWeMc5-STQHaKe?w=208&h=295&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Template 1">
+    <img src="https://th.bing.com/th/id/OIP.0cvTkBT32QdHdOr7HT3xNAHaJl?w=208&h=270&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Template 2">
+    <img src="https://th.bing.com/th/id/OIP._ad5S03yKIQkatyjj-fkdAHaJk?w=208&h=270&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Template 3">
+    <img src="https://th.bing.com/th/id/OIP.LL9wiJ-Yzo3EKQL72NscEAHaKf?w=208&h=294&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Template 4">
+    <img src="https://th.bing.com/th/id/OIP.oKS71Z44Xk6Q4W7ZkbFBpgHaJl?w=208&h=270&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Template 5">
+    <img src="https://th.bing.com/th/id/OIP.LcQAL8g-ldoJte9RvCaj6AHaJl?w=208&h=270&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Template 6">
+  </div>
+</section>
+
+<section class="upload-section" id="uploadSection">
+  <div class="container">
+    <h2>Upload Your Resume</h2>
+    <!-- Form posts directly to Flask analysis route -->
+    <form action="{{ url_for('analysis') }}" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="resumeFile">Resume (PDF, DOC, DOCX)</label>
+        <input type="file" id="resumeFile" name="resume" accept=".pdf,.doc,.docx" required>
+      </div>
+      <div class="form-group">
+        <label for="jobProfile">Job Profile</label>
+        <input type="text" id="jobProfile" name="job_profile" placeholder="Enter job profile" required>
+      </div>
+      <div class="form-group">
+        <label for="experience">Years of Experience</label>
+        <select id="experience" name="experience" required>
+          <option value="" disabled selected>Select experience</option>
+          <option value="0-1">0-1 years</option>
+          <option value="1-3">1-3 years</option>
+          <option value="3-5">3-5 years</option>
+          <option value="5+">5+ years</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="location">Preferred Job Location</label>
+        <input type="text" id="location" name="location" placeholder="Enter preferred location">
+      </div>
+      <button type="submit" class="btn-primary">Submit Resume</button>
+    </form>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container footer-container">
+    <p>&copy; 2025 Smart Resume Builder. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+</footer>
+
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Login / Sign Up</h2>
+    <div class="hero-avatar">
+      <img src="https://avatars.dicebear.com/api/avataaars/sampleuser.svg" alt="Avatar">
+    </div>
+    <form>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your full name" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" required oninput="updateAvatar(this.value)">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password" required>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" placeholder="Confirm password" required>
+      </div>
+      <button type="submit" class="btn-primary">Sign Up / Login</button>
+    </form>
+  </div>
+</div>
+
+<script>
+function openModal(){ document.getElementById('loginModal').style.display='block'; }
+function closeModal(){ document.getElementById('loginModal').style.display='none'; }
+window.onclick=function(event){ if(event.target==document.getElementById('loginModal')) closeModal(); }
+function updateAvatar(value){
+  const avatar=document.querySelector('#loginModal .hero-avatar img');
+  const safeValue=encodeURIComponent(value||'sampleuser');
+  avatar.src=`https://avatars.dicebear.com/api/avataaars/${safeValue}.svg`;
+}
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+  anchor.addEventListener('click',function(e){
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+
+</body>
+</html>

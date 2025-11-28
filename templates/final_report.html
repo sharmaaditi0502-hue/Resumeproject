@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprehensive Resume Analysis</title>
+<style>
+body { font-family: 'Segoe UI', sans-serif; background: #f4f7fb; color: #333; margin: 0; padding: 0; }
+.container { max-width: 1200px; margin: 40px auto; background: #fff; padding: 30px 50px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+h1, h2 { text-align: center; color: #2c3e50; }
+h2 { margin-top: 35px; }
+.section { margin-top: 35px; }
+
+.flex-container {
+    display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+}
+.flex-box {
+    background: #f0f4f8; padding: 25px; border-radius: 12px;
+    flex: 1 1 280px; box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+.flex-box h4 {
+    margin-bottom: 12px; color: #34495e;
+}
+.flex-box ul {
+    margin-left: 18px; line-height: 1.8;
+}
+
+
+.mini-score {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff3e0;
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-left: 6px solid #a0522d; /* brown line */
+}
+.mini-score span { font-size: 16px; color: #333; }
+.mini-score .value { font-size: 18px; color: #a0522d; }
+
+
+.skills-gap-box {
+    background: linear-gradient(135deg, #eef2ff, #f7f9ff);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+}
+.skills-tag {
+    display: inline-block;
+    background: #dbe4ff;
+    color: #2c3e50;
+    padding: 8px 14px;
+    margin: 6px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 5px solid #4c6ef5;
+}
+.skills-tag i { margin-right: 6px; color: #4c6ef5; }
+
+.export-btn {
+    display: block; margin: 25px auto; text-align: center; background: #a0522d;
+    color: white; padding: 10px 18px; text-decoration: none; border-radius: 10px;
+    font-weight: 600; font-size: 14px; width: 180px; transition: 0.3s;
+}
+.export-btn:hover { background: #8b4513; transform: translateY(-2px); }
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>📑 Comprehensive Resume Analysis</h1>
+
+
+<h2>📊 Key Scores</h2>
+<div class="section">
+    <div class="mini-score"><span>Keywords Matching</span><span class="value">{{ keyword_score }}%</span></div>
+    <div class="mini-score"><span>ATS Compatibility</span><span class="value">{{ ats_score }}%</span></div>
+    <div class="mini-score"><span>Content Quality</span><span class="value">{{ content_quality }}%</span></div>
+    <div class="mini-score"><span>Experience Evolution</span><span class="value">{{ experience_score }}%</span></div>
+    <div class="mini-score"><span>Skills Gap</span><span class="value">{{ skills_score }}%</span></div>
+    <div class="mini-score"><span>Achievement Qualification</span><span class="value">{{ achievement_score }}%</span></div>
+    <div class="mini-score"><span>Formatting & Layout</span><span class="value">{{ formatting_score }}%</span></div>
+    <div class="mini-score"><span>Summary Evaluation</span><span class="value">{{ summary_score }}%</span></div>
+    <div class="mini-score"><span>Job Match Score</span><span class="value">{{ job_match_score }}%</span></div>
+</div>
+
+<!-- Section 1 -->
+<div class="section flex-container">
+    <div class="flex-box">
+        <h4>Personalized Improvement Suggestions</h4>
+        <ul>{% for s in suggestions %}<li>{{ s }}</li>{% endfor %}</ul>
+    </div>
+
+    <div class="flex-box">
+        <h4>Missing / Duplicate Info</h4>
+        <ul>{% for i in duplicate_info %}<li>{{ i }}</li>{% endfor %}</ul>
+    </div>
+</div>
+
+<!-- Section 2 -->
+<div class="section flex-container">
+
+    <div class="skills-gap-box flex-box">
+        <h4>Skills Gap Analysis</h4>
+        {% for kw in missing_keywords %}
+            <span class="skills-tag"><i>⚠</i>{{ kw }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="flex-box">
+        <h4>Section Completeness / Red Flags</h4>
+        <ul>{% for r in red_flags %}<li>{{ r }}</li>{% endfor %}</ul>
+    </div>
+</div>
+
+<!-- NEW Section: Analysis Features -->
+<div class="section">
+    <h2>🛠️ Analysis Features</h2>
+    <div class="flex-container">
+        <div class="flex-box">
+            <ul>
+                <li>1. Keywords Matching</li>
+                <li>2. ATS Compatibility</li>
+                <li>3. Content Quality Analysis</li>
+                <li>4. Experience Evolution</li>
+                <li>5. Skills Gap Analysis</li>
+                <li>6. Achievement Qualification</li>
+                <li>7. Formatting and Layout Check</li>
+                <li>8. Summary Evaluation</li>
+                <li>9. Job Match Score</li>
+                <li>10. Personalized Improvement Suggestions</li>
+                <li>11. Duplicate and Unnecessary Info Detection</li>
+                <li>12. Gap & Red Flag Detection</li>
+                <li>13. Section Completeness Check</li>
+                <li>14. File Parsing and Clean Extraction</li>
+                <li>15. Exportable Report Generation</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<a href="#" class="export-btn" onclick="window.print()">Export Full Report</a>
+</div>
+
+</body>
+</html>

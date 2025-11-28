@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Suggestions</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #fdf6f0;
+    color: #5a4a3c;
+    padding: 20px;
+}
+.container { max-width: 900px; margin: auto; }
+h1 { text-align: center; color: #6f4e37; margin-bottom: 30px; }
+h2 { color: #6f4e37; margin-top: 25px; }
+.job-card {
+    background: #fff; padding: 20px; margin-bottom: 20px;
+    border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.job-title { font-size: 20px; font-weight: bold; margin-bottom: 5px; }
+.company-name { font-size: 16px; margin-bottom: 10px; }
+.score-bar-container { background: #eee; border-radius: 8px; overflow: hidden; height: 25px; margin-bottom: 5px; }
+.score-fill {
+    height: 100%; background: #6f4e37; color: white;
+    text-align: center; line-height: 25px; width: 0%; transition: width 1s ease-in-out;
+}
+.score-label { font-weight: bold; margin-bottom: 5px; }
+ul { margin-left: 20px; margin-bottom: 10px; }
+.highlight-box {
+    background: #fdf6f0; padding: 10px 15px;
+    border-radius: 8px; margin-bottom: 20px;
+    border-left: 5px solid #6f4e37;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Job Suggestions</h1>
+
+<!-- Resume Highlights -->
+{% if resume_highlights %}
+<div class="highlight-box">
+    <h2>Your Resume Highlights</h2>
+    <ul>
+        {% for h in resume_highlights %}
+        <li>{{ h }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% for job in jobs %}
+<div class="job-card">
+    <div class="job-title">{{ job.title }}</div>
+    <div class="company-name">{{ job.company }}</div>
+
+    <div class="score-label">Match Score</div>
+    <div class="score-bar-container">
+        <div class="score-fill" data-score="{{ job.match_score }}">{{ job.match_score }}%</div>
+    </div>
+
+    {% if job.missing_keywords %}
+    <div class="score-label">Missing Keywords:</div>
+    <ul>
+        {% for kw in job.missing_keywords %}
+            <li>{{ kw }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if job.suggestions %}
+    <div class="score-label">Suggestions to Improve:</div>
+    <ul>
+        {% for s in job.suggestions %}
+            <li>{{ s }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if resume_highlights %}
+    <div class="score-label">Relevant Resume Highlights:</div>
+    <ul>
+        {% for h in resume_highlights %}
+            <li>{{ h }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endfor %}
+
+</div>
+
+<script>
+document.querySelectorAll('.score-fill').forEach(el => {
+    const score = el.dataset.score || 0;
+    setTimeout(() => { el.style.width = score + '%'; }, 100);
+});
+</script>
+</body>
+</html>
